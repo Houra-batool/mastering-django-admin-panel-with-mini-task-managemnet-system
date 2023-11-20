@@ -1,3 +1,7 @@
 from django.contrib import admin
+from project_app.models import Project, Task, Category
 
-# Register your models here.
+
+admin.site.register(Project)
+admin.site.register(Category)
+admin.site.register(Task)
