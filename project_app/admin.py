@@ -14,6 +14,7 @@ class TaskAdmin(admin.ModelAdmin):
     actions = ['mark_as_pending']
     save_as = True
     save_on_top = True
+    raw_id_fields = ("project",)
 
     def assigned_to_list(self, obj):
         return ", ".join([user.username for user in obj.assigned_to.all()])
