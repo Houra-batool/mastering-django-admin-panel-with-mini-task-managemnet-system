@@ -5,6 +5,7 @@ from project_app.models import Project, Task, Category
 class TaskAdmin(admin.ModelAdmin):
     list_display = ('title', 'status', 'due_date', 'project', 'assigned_to_list')
     list_editable = ('status',)
+    list_filter = ('status', 'project__name')
 
     def assigned_to_list(self, obj):
         return ", ".join([user.username for user in obj.assigned_to.all()])
