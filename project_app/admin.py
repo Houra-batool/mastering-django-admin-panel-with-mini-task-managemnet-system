@@ -9,6 +9,7 @@ class TaskAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description', 'assigned_to__username')
     date_hierarchy = 'due_date'
     actions = ['mark_as_pending']
+    save_as = True
 
     def assigned_to_list(self, obj):
         return ", ".join([user.username for user in obj.assigned_to.all()])
