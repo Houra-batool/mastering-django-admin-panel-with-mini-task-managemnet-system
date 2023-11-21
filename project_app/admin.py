@@ -15,6 +15,7 @@ class TaskAdmin(admin.ModelAdmin):
     save_as = True
     save_on_top = True
     raw_id_fields = ("project",)
+    prepopulated_fields = {"description": ("title",)}
 
     def assigned_to_list(self, obj):
         return ", ".join([user.username for user in obj.assigned_to.all()])
