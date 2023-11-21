@@ -14,6 +14,8 @@ class TaskInline(admin.TabularInline):
 
 class ProjectAdmin(admin.ModelAdmin):
     inlines = [TaskInline]
+    search_fields = ('project',)
+
 
 
 class TaskAdmin(admin.ModelAdmin):
@@ -22,10 +24,10 @@ class TaskAdmin(admin.ModelAdmin):
     list_filter = ('status', 'project__name', 'due_date')
     search_fields = ('title', 'description', 'assigned_to__username')
     date_hierarchy = 'due_date'
+    autocomplete_fields = ('project',)
     actions = ['mark_as_pending']
     save_as = True
     save_on_top = True
-    raw_id_fields = ("project",)
     prepopulated_fields = {"description": ("title",)}
     filter_horizontal = ('assigned_to',)
 
