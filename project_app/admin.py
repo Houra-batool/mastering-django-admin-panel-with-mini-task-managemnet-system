@@ -6,6 +6,7 @@ class TaskAdmin(admin.ModelAdmin):
     list_display = ('title', 'status', 'due_date', 'project', 'assigned_to_list')
     list_editable = ('status',)
     list_filter = ('status', 'project__name', 'due_date')
+    search_fields = ('title', 'description', 'assigned_to__username')
     date_hierarchy = 'due_date'
 
     def assigned_to_list(self, obj):
