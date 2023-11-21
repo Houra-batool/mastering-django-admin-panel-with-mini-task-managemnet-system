@@ -8,6 +8,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = "Task Categories"
+
 
 class Project(models.Model):
     name = models.CharField(max_length=255)
@@ -36,3 +39,4 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+

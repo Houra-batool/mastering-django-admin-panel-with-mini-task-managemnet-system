@@ -1,6 +1,9 @@
 from django.contrib import admin
 from project_app.models import Project, Task, Category
 
+admin.site.site_header = 'XYZ Task Management'
+admin.site.index_title = 'Welcome to XYZ Task Management'
+
 
 class TaskAdmin(admin.ModelAdmin):
     list_display = ('title', 'status', 'due_date', 'project', 'assigned_to_list')
@@ -10,6 +13,7 @@ class TaskAdmin(admin.ModelAdmin):
     date_hierarchy = 'due_date'
     actions = ['mark_as_pending']
     save_as = True
+    save_on_top = True
 
     def assigned_to_list(self, obj):
         return ", ".join([user.username for user in obj.assigned_to.all()])
