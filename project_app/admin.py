@@ -5,6 +5,17 @@ admin.site.site_header = 'XYZ Task Management'
 admin.site.index_title = 'Welcome to XYZ Task Management'
 
 
+class TaskInline(admin.TabularInline):
+    model = Task
+    extra = 0
+    classes = ['collapse']
+    # exclude = ('description',)
+
+
+class ProjectAdmin(admin.ModelAdmin):
+    inlines = [TaskInline]
+
+
 class TaskAdmin(admin.ModelAdmin):
     list_display = ('title', 'status', 'due_date', 'project', 'assigned_to_list')
     list_editable = ('status',)
@@ -29,6 +40,6 @@ class TaskAdmin(admin.ModelAdmin):
     mark_as_pending.short_description = "Mark selected tasks as pending"
 
 
-admin.site.register(Project)
+admin.site.register(Project, ProjectAdmin)
 admin.site.register(Category)
 admin.site.register(Task, TaskAdmin)
